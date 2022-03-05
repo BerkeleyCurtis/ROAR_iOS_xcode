@@ -1,14 +1,14 @@
 //
-//  ViewController+BLE.swift
+//  CaliberationViewController+BLE.swift
 //  ROAR
 //
-//  Created by Michael Wu on 9/11/21.
+//  Created by Michael Wu on 2/9/22.
 //
 
 import Foundation
 import CoreBluetooth
 import UIKit
-extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
+extension CaliberationViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let services = peripheral.services {
             for service in services {
@@ -64,24 +64,16 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
         AppInfo.sessionData.isBLEConnected = false
     }
     
-    func startWritingToBLE() {
-        DispatchQueue.global(qos: .background).async {
-            self.bleTimer = Timer(timeInterval: 0.01, repeats: true) { _ in
-                    // TODO reconnect every 5 seconds
-                    if AppInfo.sessionData.isBLEConnected {
-                        self.writeBLE()
-                        self.readFromBLE()
-                    }
-                }
-                let runLoop = RunLoop.current
-                runLoop.add(self.bleTimer, forMode: .default)
-                runLoop.run()
-            }
-    }
-    
-    func readFromBLE() {
+    @objc
+    func readVelocity() {
         if velocityCharacteristic != nil {
             self.bluetoothPeripheral.readValue(for: self.velocityCharacteristic)
+        }
+    }
+    @objc
+    func readThrottle() {
+        if throtReturnCharacteristic != nil {
+            self.bluetoothPeripheral.readValue(for: self.throtReturnCharacteristic)
         }
     }
     func disconnectBluetooth() {
@@ -91,14 +83,10 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
     
-    func writeBLE() {
-        if self.bluetoothPeripheral != nil && self.bluetoothPeripheral.state == .connected {
-            self.writeToBluetoothDevice(throttle: CGFloat(controlCenter.control.throttle), steering: CGFloat(controlCenter.control.steering))
-        }
-    }
     func writeToBluetoothDevice(throttle: CGFloat, steering: CGFloat){
-        let currThrottleRPM = throttle.map(from: self.iOSControllerRange, to: self.throttle_range)
-        var currSteeringRPM = steering.map(from: self.iOSControllerRange, to: self.steer_range)
+        // turn CGFloat into Int, and then into a string in format of (THROTTLE, STEERING) to send it.
+        let currThrottleRPM = throttle.map(from: self.ThrottleControllerRange, to: self.throttle_range)
+        var currSteeringRPM = steering.map(from: self.SteeringControllerRange, to: self.steer_range)
         
         currSteeringRPM = currSteeringRPM.clamped(to: 1000...2000)
         
@@ -118,12 +106,22 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let characteristics = service.characteristics {
+            // catch and record all ble characteristics
             for char in characteristics {
                 if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1214" {
                     bleControlCharacteristic = char
                 }
                 if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1215" {
                     velocityCharacteristic = char
+                }
+                if char.uuid.uuidString == "19B10012-E8F2-537E-4F6C-D104768A1214" {
+                    newNameCharacteristic = char
+                }
+                if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1216" {
+                    configCharacteristic = char 
+                }
+                if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1217" {
+                    throtReturnCharacteristic = char
                 }
             }
         }
@@ -135,9 +133,27 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
                 return
             }
         if characteristic == velocityCharacteristic {
+            // catch a velocity change and update the velocity label
             guard let data = characteristic.value else { return }
-            let velocity = data.withUnsafeBytes { $0.load(as: Float.self) }
-            self.controlCenter.vehicleState.hall_effect_sensor_velocity = velocity
+            self.velocity = data.withUnsafeBytes { $0.load(as: Float.self) }
+            DispatchQueue.main.async {
+                self.velocity_label.text = "Current Velocity: \(self.velocity)"
+            }
+        }
+        if characteristic == throtReturnCharacteristic {
+            // catch a throttle change and update the throttle label
+            guard let throt = characteristic.value else { return }
+            self.throtReturn = throt.withUnsafeBytes { $0.load(as: Float.self) }
+            DispatchQueue.main.async {
+                self.throt_return_label.text = "Current throttle: \(self.throtReturn)"
+            }
+        }
+    }
+    
+    func sendBLENewName(peripheral: CBPeripheral, message: String){
+        if newNameCharacteristic != nil {
+            peripheral.writeValue(message.data(using: .utf8)!, for: newNameCharacteristic, type: .withoutResponse)
+            //AppInfo.forget()
         }
     }
     

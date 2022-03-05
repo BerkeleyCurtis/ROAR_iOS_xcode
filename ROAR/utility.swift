@@ -98,14 +98,15 @@ class VehicleState {
     var gy: Float = 0
     var gz: Float = 0
     var recv_time: Float = 0
+    
     var hall_effect_sensor_velocity: Float = 0
-
     
     // quaternion
     var ix: Float = 0
     var iy: Float = 0
     var iz: Float = 0
     var r: Float = 0
+    
     
     init() {
         
@@ -122,7 +123,7 @@ class VehicleState {
 //        self.transform = transform
 //        self.velocity = velocity
 //    }
-    func update(x:Float, y:Float, z:Float,roll:Float,pitch:Float, yaw:Float, vx:Float, vy:Float, vz:Float, ax:Float, ay:Float, az:Float, gx:Float,gy:Float, gz:Float, recv_time: TimeInterval, ix:Float,iy:Float,iz:Float,r:Float){
+    func update(x:Float, y:Float, z:Float,roll:Float,pitch:Float, yaw:Float, vx:Float, vy:Float, vz:Float, ax:Float, ay:Float, az:Float, gx:Float,gy:Float, gz:Float, recv_time: TimeInterval){
     self.x = x
     self.y = y
     self.z = z
@@ -139,10 +140,6 @@ class VehicleState {
     self.gy = gy
     self.gz = gz
     self.recv_time = Float(recv_time)
-        self.ix = ix
-        self.iy=iy
-        self.iz=iz
-        self.r = r
     }
 }
 
