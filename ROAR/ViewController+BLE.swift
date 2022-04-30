@@ -83,6 +83,9 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
         if velocityCharacteristic != nil {
             self.bluetoothPeripheral.readValue(for: self.velocityCharacteristic)
         }
+        if rewardCharacteristic != nil {
+            self.bluetoothPeripheral.readValue(for: self.rewardCharacteristic)
+        }
     }
     func disconnectBluetooth() {
         self.bleTimer.invalidate()
@@ -125,6 +128,9 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
                 if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1215" {
                     velocityCharacteristic = char
                 }
+                if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1218" {
+                    rewardCharacteristic = char
+                }
             }
         }
     }
@@ -138,6 +144,12 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
             guard let data = characteristic.value else { return }
             let velocity = data.withUnsafeBytes { $0.load(as: Float.self) }
             self.controlCenter.vehicleState.hall_effect_sensor_velocity = velocity
+        }
+        if characteristic == rewardCharacteristic {
+            guard let data = characteristic.value else { return }
+            let reward = data.withUnsafeBytes { $0.load(as: Float.self) }
+            self.controlCenter.vehicleState.reward = reward
+            self.logger.info("reward is ", String(reward))
         }
     }
     

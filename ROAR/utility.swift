@@ -100,6 +100,7 @@ class VehicleState {
     var recv_time: Float = 0
     
     var hall_effect_sensor_velocity: Float = 0
+    var reward: Float = 0
     
     // quaternion
     var ix: Float = 0
@@ -112,7 +113,7 @@ class VehicleState {
         
     }
     func toString() -> String {
-        let string = "\(self.x), \(self.y), \(self.z), \(self.roll), \(self.pitch), \(self.yaw), \(self.vx),\(self.vy),\(self.vz),\(self.ax),\(self.ay),\(self.az),\(self.gx),\(self.gy),\(self.gz),\(hall_effect_sensor_velocity),\(self.recv_time),\(self.ix),\(self.iy),\(self.iz),\(self.r)"
+        let string = "\(self.x), \(self.y), \(self.z), \(self.roll), \(self.pitch), \(self.yaw), \(self.vx),\(self.vy),\(self.vz),\(self.ax),\(self.ay),\(self.az),\(self.gx),\(self.gy),\(self.gz),\(hall_effect_sensor_velocity),\(self.recv_time),\(self.ix),\(self.iy),\(self.iz),\(self.r),\(self.reward)"
         return string
     }
     func toData() -> Data {

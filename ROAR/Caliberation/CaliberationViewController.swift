@@ -42,6 +42,7 @@ class CaliberationViewController: UIViewController {
     var throtReturnCharacteristic: CBCharacteristic!
     var configCharacteristic: CBCharacteristic!
     var newNameCharacteristic: CBCharacteristic!
+    var rewardCharacteristic: CBCharacteristic!
     var velocity: Float = 0
     var throtReturn: Float = 0
     

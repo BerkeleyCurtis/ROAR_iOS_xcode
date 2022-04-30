@@ -41,6 +41,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ScanQRCodeP
     var bluetoothDispatchWorkitem:DispatchWorkItem!
     var bleControlCharacteristic: CBCharacteristic!
     var velocityCharacteristic: CBCharacteristic!
+    var rewardCharacteristic: CBCharacteristic!
     var updateThrottleSteeringUITimer: Timer!
     
     // UDP sockets

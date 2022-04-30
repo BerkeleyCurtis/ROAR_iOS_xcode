@@ -3,4 +3,114 @@
    uuid = "BB07BCD9-B118-46D9-A3D3-6F6D813566CD"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ROAR/ScanQRCodeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
+            landmarkName = "ScannerViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - f67a43ba8b1c3bcd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.captureSession.getter : Swift.Optional&lt;__C.AVCaptureSession&gt;"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "7"
+                  endingLineNumber = "7"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - 609606961fcef361"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.captureSession.setter : Swift.Optional&lt;__C.AVCaptureSession&gt;"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "7"
+                  endingLineNumber = "7"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - 5a8fc62880ec5af3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.captureSession.modify : Swift.Optional&lt;__C.AVCaptureSession&gt;"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - 9e41f5ea1eb34cfe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.captureSession.modify : Swift.Optional&lt;__C.AVCaptureSession&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "7"
+                  endingLineNumber = "7"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - b749c6e10977b21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; HardwarePID_ROAR.ScannerViewController"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "7"
+                  endingLineNumber = "7"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "03F5BA5E-0F66-494F-A79E-EA1985656C76 - de726bacefbbbfd2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HardwarePID_ROAR.ScannerViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;HardwarePID_ROAR.ScannerViewController&gt;"
+                  moduleName = "HardwarePID-ROAR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adamcurtis/Documents/ROAR_iOS_xcode/ROAR/ScanQRCodeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "7"
+                  endingLineNumber = "7"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
