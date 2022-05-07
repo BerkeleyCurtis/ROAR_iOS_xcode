@@ -66,7 +66,7 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func startWritingToBLE() {
         DispatchQueue.global(qos: .background).async {
-            self.bleTimer = Timer(timeInterval: 0.01, repeats: true) { _ in
+            self.bleTimer = Timer(timeInterval: 0.1, repeats: true) { _ in
                     // TODO reconnect every 5 seconds
                     if AppInfo.sessionData.isBLEConnected {
                         self.writeBLE()
@@ -80,9 +80,9 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
     }
     
     func readFromBLE() {
-        if velocityCharacteristic != nil {
-            self.bluetoothPeripheral.readValue(for: self.velocityCharacteristic)
-        }
+//        if velocityCharacteristic != nil {
+//            self.bluetoothPeripheral.readValue(for: self.velocityCharacteristic)
+//        }
         if rewardCharacteristic != nil {
             self.bluetoothPeripheral.readValue(for: self.rewardCharacteristic)
         }
@@ -100,8 +100,8 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
     func writeToBluetoothDevice(throttle: CGFloat, steering: CGFloat){
-        let currThrottleRPM = throttle.map(from: self.iOSControllerRange, to: self.throttle_range)
-        var currSteeringRPM = steering.map(from: self.iOSControllerRange, to: self.steer_range)
+        let currThrottleRPM = throttle.map(from: self.ThrottleControllerRange, to: self.throttle_range)
+        var currSteeringRPM = steering.map(from: self.SteeringControllerRange, to: self.steer_range)
         
         currSteeringRPM = currSteeringRPM.clamped(to: 1000...2000)
         
@@ -125,9 +125,9 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
                 if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1214" {
                     bleControlCharacteristic = char
                 }
-                if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1215" {
-                    velocityCharacteristic = char
-                }
+//                if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1215" {
+//                    velocityCharacteristic = char
+//                }
                 if char.uuid.uuidString == "19B10011-E8F2-537E-4F6C-D104768A1218" {
                     rewardCharacteristic = char
                 }
@@ -140,11 +140,11 @@ extension ViewController:CBCentralManagerDelegate, CBPeripheralDelegate {
                 print("ERROR didUpdateValue \(e)")
                 return
             }
-        if characteristic == velocityCharacteristic {
-            guard let data = characteristic.value else { return }
-            let velocity = data.withUnsafeBytes { $0.load(as: Float.self) }
-            self.controlCenter.vehicleState.hall_effect_sensor_velocity = velocity
-        }
+//        if characteristic == velocityCharacteristic {
+//            guard let data = characteristic.value else { return }
+//            let velocity = data.withUnsafeBytes { $0.load(as: Float.self) }
+//            self.controlCenter.vehicleState.hall_effect_sensor_velocity = velocity
+//        }
         if characteristic == rewardCharacteristic {
             guard let data = characteristic.value else { return }
             let reward = data.withUnsafeBytes { $0.load(as: Float.self) }

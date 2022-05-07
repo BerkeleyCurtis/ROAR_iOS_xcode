@@ -34,13 +34,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ScanQRCodeP
     var bluetoothPeripheral: CBPeripheral!
     var centralManager: CBCentralManager!
     
-    var iOSControllerRange: ClosedRange<CGFloat> = CGFloat(-1.0)...CGFloat(1.0);
+    var ThrottleControllerRange: ClosedRange<CGFloat> = CGFloat(-5.0)...CGFloat(5.0);
+    var SteeringControllerRange: ClosedRange<CGFloat> = CGFloat(-1.0)...CGFloat(1.0);
     let throttle_range = CGFloat(1000)...CGFloat(2000)
     let steer_range = CGFloat(1000)...CGFloat(2000)
     var bleTimer: Timer!
     var bluetoothDispatchWorkitem:DispatchWorkItem!
     var bleControlCharacteristic: CBCharacteristic!
-    var velocityCharacteristic: CBCharacteristic!
+//    var velocityCharacteristic: CBCharacteristic!
     var rewardCharacteristic: CBCharacteristic!
     var updateThrottleSteeringUITimer: Timer!
     
